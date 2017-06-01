@@ -191,7 +191,9 @@ angular.module('dashboard.Dashboard.Model.Edit', [
       $scope.data[$scope.model.options.softDeleteProperty] = true;
       save(function() {
         CacheService.clear($scope.action.options.model);
-        $window.history.back();
+        if (!formParams.isWillNotGoBack) {
+          $window.history.back();
+        }
       });
     } else {
       //Hard Delete
